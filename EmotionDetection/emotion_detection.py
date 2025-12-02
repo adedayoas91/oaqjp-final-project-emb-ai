@@ -1,4 +1,5 @@
 import requests
+import json
 
 def emotion_detector(text_to_analyse):
     URL = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
@@ -6,7 +7,7 @@ def emotion_detector(text_to_analyse):
     Input = { "raw_document": { "text": text_to_analyse } }    
     response = requests.post(URL, json = Input, headers=Headers)    
     formatted_response = json.loads(response.text)
-    # Extracting sentiment label and score from the response
+    
     emotion = formatted_response['emotionPredictions'][0]['emotion']
     
     return emotion
